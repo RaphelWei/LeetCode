@@ -1,2 +1,2 @@
 # LeetCode
-My experience on working in leetcode online judeg.
+My experience on working in leetcode online judge.
