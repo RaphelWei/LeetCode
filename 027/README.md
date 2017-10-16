@@ -36,7 +36,28 @@ for(vector<int>::iterator iter = nums.begin(); iter != nums.end(); iter++) {
 ```
 因为使用`nums.erase(iter)`之后，iter就成为了一个野指针，不能再进行iter++操作
 
-我的代买因为用了erase()方法的缘故(应该是这个原因吧？)，导致运行时间花了9ms，因此这里再记录一个3ms的优秀算法。
+我的代码因为用了erase()方法的缘故(应该是这个原因吧？)，导致运行时间花了9ms，因此这里再记录一个3ms的优秀算法。
+```
+int removeElement(vector<int>& nums, int val) {
+    if (nums.empty() || (nums.size() == 1 && nums[0] == val))
+        return 0;
+    int ret = 0;
+    int front = 0;
+    int back = nums.size() - 1;
 
-
-
+    while(front <= back) {
+        while(front <= back && nums[back] == val) {
+            --back;  
+        } 
+        if (front <= back) {
+            if (nums[front] == val) {
+                nums[front] = nums[back];
+                --back;
+            }   
+            ++front;
+            ++ret;
+        }
+    }
+    return ret;
+}
+```
